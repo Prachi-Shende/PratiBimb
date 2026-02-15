@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { events } from '../../data/events';
 import Stars from '../../components/Stars';
+import fs from 'fs';
+import path from 'path';
 
 export function generateStaticParams() {
     return events.map((event) => ({
@@ -14,6 +16,25 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
 
     if (!event) {
         return <div className="text-white text-center mt-20">Event not found</div>;
+    }
+
+    let galleryImages: string[] = event.gallery || [];
+
+    if (event.folderName) {
+        const folderPath = path.join(process.cwd(), 'public', event.folderName);
+        if (fs.existsSync(folderPath)) {
+            try {
+                const files = fs.readdirSync(folderPath);
+                const imageExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg'];
+                const folderImages = files
+                    .filter(file => imageExtensions.includes(path.extname(file).toLowerCase()))
+                    .map(file => `/${event.folderName}/${file}`);
+
+                galleryImages = [...galleryImages, ...folderImages];
+            } catch (error) {
+                console.error(`Error reading folder ${folderPath}:`, error);
+            }
+        }
     }
 
     return (
@@ -38,8 +59,8 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                 <div className="mt-12">
                     <h2 className="text-[#D4AF37] font-cinzel text-4xl mb-6 text-center">Gallery</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {event.gallery && event.gallery.length > 0 ? (
-                            event.gallery.map((img, index) => (
+                        {galleryImages.length > 0 ? (
+                            galleryImages.map((img, index) => (
                                 <div key={index} className="aspect-square relative group overflow-hidden rounded border border-[#D4AF37]/20">
                                     <img src={img} alt={`${event.title} gallery ${index + 1}`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
                                 </div>
