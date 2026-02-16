@@ -46,8 +46,8 @@ export default function GallerySection() {
                     alt="aGrid6"
                 />
                 <img
-                    src="/aGrid7.jpeg"
-                    className="shadow-[0_4px_115.4px_0_#000] w-[547px] h-[410px] absolute left-[945px] top-1 max-w-none"
+                    src="/aGrid7.JPG"
+                    className="shadow-[0_4px_115.4px_0_#000] w-[547px] absolute left-[945px] top-1 max-w-none"
                     alt="aGrid7"
                 />
                 <img

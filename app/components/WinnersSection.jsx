@@ -1,11 +1,11 @@
-import wall from "../pictures/Wall.jpg";
+
 
 export default function WinnersSection() {
     return (
         <div className="absolute top-[10600px] w-full h-[1500px]">
             {/* Background Wall */}
             <div className="absolute inset-0 z-0 overflow-hidden">
-                <img src={wall.src} className="absolute w-[2000px] right-[300px] top-[270px]" alt="Wall" />
+                <img src="/Wall.jpg" className="absolute w-[2000px] right-[300px] top-[270px]" alt="Wall" />
             </div>
 
             {/* Pillars */}
