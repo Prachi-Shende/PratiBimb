@@ -1,76 +1,148 @@
 'use client';
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
-    const [openDropdown, setOpenDropdown] = useState(null);
-    const router = useRouter();
+  const [openDropdown, setOpenDropdown] = useState(null);
 
-    const handleDropdownEnter = (menu) => {
-        setOpenDropdown(menu);
-    };
+  return (
+    <nav style={{
+      position: 'absolute',
+      top: 0, left: 0,
+      zIndex: 100,
+      padding: '0 120px',
+      height: '140px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      boxSizing: 'border-box',
+      width: '2560px',
+      background: 'transparent',
+      borderBottom: '3px solid rgba(212,175,55,0.7)',
+    }}>
 
-    const handleDropdownLeave = () => {
-        setOpenDropdown(null);
-    };
+      <span style={{
+        fontFamily: "'Cinzel', serif",
+        fontSize: '48px',
+        fontWeight: '600',
+        color: '#D4AF37',
+        letterSpacing: '8px',
+        textShadow: '0 0 40px rgba(212,175,55,0.6)',
+      }}>
+        PratiBimb
+      </span>
 
-    return (
-        <nav className="absolute top-0 left-0 w-full h-[150px] z-50">
-            {/* Home */}
-            <Link href="/home" className="text-[#FFF] font-cinzel text-[40px] absolute left-[1146px] top-[67px] hover:text-[#D4AF37] transition-colors">
-                Home
-            </Link>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '100px' }}>
+        <NavLink href="/">Home</NavLink>
+        <DropdownMenu
+          label="Clubs"
+          open={openDropdown === 'clubs'}
+          onEnter={() => setOpenDropdown('clubs')}
+          onLeave={() => setOpenDropdown(null)}
+          items={[{ href: '/clubs/edc', label: 'EDC' }, { href: '/clubs/obsidian', label: 'Obsidian' }]}
+        />
+        <DropdownMenu
+          label="The Past"
+          open={openDropdown === 'past'}
+          onEnter={() => setOpenDropdown('past')}
+          onLeave={() => setOpenDropdown(null)}
+          items={[{ href: '/past/prati25', label: "Prati25'" }, { href: '/past/prati26', label: "Prati26'" }]}
+        />
+        <NavLink href="/contact">Contact</NavLink>
+      </div>
+    </nav>
+  );
+}
 
-            {/* Clubs Dropdown */}
-            <div
-                className="absolute left-[1464px] top-[50px] w-[165px] h-[75px]"
-                onMouseEnter={() => handleDropdownEnter('clubs')}
-                onMouseLeave={handleDropdownLeave}
-            >
-                <div className="cursor-pointer flex justify-center items-center w-full h-full">
-                    <p className="text-[#FFF] font-cinzel text-[40px] hover:text-[#D4AF37] transition-colors">Clubs</p>
-                </div>
+function NavLink({ href, children }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <Link href={href}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        fontFamily: "'Cinzel', serif",
+        fontSize: '32px',
+        fontWeight: '400',
+        letterSpacing: '5px',
+        textTransform: 'uppercase',
+        textDecoration: 'none',
+        color: hovered ? '#FFD700' : 'rgba(212,175,55,0.85)',
+        textShadow: hovered ? '0 0 25px rgba(212,175,55,0.8)' : 'none',
+        transition: 'color 0.25s ease, text-shadow 0.25s ease',
+        whiteSpace: 'nowrap',
+      }}>
+      {children}
+    </Link>
+  );
+}
 
-                {openDropdown === 'clubs' && (
-                    <div className="absolute top-[60px] left-0 w-[200px] bg-[#1a1a1a]/90 border border-[#D4AF37] rounded-md shadow-[0_0_15px_#D4AF3750] flex flex-col py-2 backdrop-blur-md">
-                        <Link href="/clubs/edc" className="px-6 py-3 text-[#FFF] font-cinzel text-[24px] hover:bg-[#D4AF37]/20 hover:text-[#D4AF37] transition-colors">
-                            EDC
-                        </Link>
-                        <Link href="/clubs/obsidian" className="px-6 py-3 text-[#FFF] font-cinzel text-[24px] hover:bg-[#D4AF37]/20 hover:text-[#D4AF37] transition-colors">
-                            Obsidian
-                        </Link>
-                    </div>
-                )}
-            </div>
+function DropdownMenu({ label, open, onEnter, onLeave, items }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div style={{ position: 'relative' }} onMouseEnter={onEnter} onMouseLeave={onLeave}>
+      <span
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          fontFamily: "'Cinzel', serif",
+          fontSize: '32px',
+          fontWeight: '400',
+          letterSpacing: '5px',
+          textTransform: 'uppercase',
+          color: open || hovered ? '#FFD700' : 'rgba(212,175,55,0.85)',
+          textShadow: open || hovered ? '0 0 25px rgba(212,175,55,0.8)' : 'none',
+          cursor: 'pointer',
+          transition: 'color 0.25s ease',
+          whiteSpace: 'nowrap',
+          userSelect: 'none',
+        }}>
+        {label}
+      </span>
 
-            {/* The Past Dropdown */}
-            <div
-                className="absolute left-[1803px] top-[57px] w-[235px] h-[61px]"
-                onMouseEnter={() => handleDropdownEnter('past')}
-                onMouseLeave={handleDropdownLeave}
-            >
-                <div className="cursor-pointer flex justify-center items-center w-full h-full">
-                    <p className="text-[#FFF] font-cinzel text-[40px] hover:text-[#D4AF37] transition-colors">The Past</p>
-                </div>
+      {open && (
+        <div style={{
+          position: 'absolute',
+          top: 'calc(100% + 24px)',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          background: 'rgba(4,2,14,0.96)',
+          border: '1px solid rgba(212,175,55,0.3)',
+          borderTop: '2px solid rgba(212,175,55,0.6)',
+          backdropFilter: 'blur(20px)',
+          padding: '12px 0',
+          minWidth: '260px',
+          display: 'flex',
+          flexDirection: 'column',
+          boxShadow: '0 24px 60px rgba(0,0,0,0.7)',
+        }}>
+          {items.map(({ href, label: l }) => <DropItem key={href} href={href}>{l}</DropItem>)}
+        </div>
+      )}
+    </div>
+  );
+}
 
-                {openDropdown === 'past' && (
-                    <div className="absolute top-[60px] left-0 w-[200px] bg-[#1a1a1a]/90 border border-[#D4AF37] rounded-md shadow-[0_0_15px_#D4AF3750] flex flex-col py-2 backdrop-blur-md">
-                        <Link href="/past/prati25" className="px-6 py-3 text-[#FFF] font-cinzel text-[24px] hover:bg-[#D4AF37]/20 hover:text-[#D4AF37] transition-colors">
-                            Prati25'
-                        </Link>
-                        <Link href="/past/prati26" className="px-6 py-3 text-[#FFF] font-cinzel text-[24px] hover:bg-[#D4AF37]/20 hover:text-[#D4AF37] transition-colors">
-                            Prati26'
-                        </Link>
-                    </div>
-                )}
-            </div>
-
-            {/* Contact */}
-            <Link href="/contact" className="text-[#FFF] font-cinzel text-[40px] absolute left-[2211px] top-[62px] hover:text-[#D4AF37] transition-colors">
-                Contact
-            </Link>
-        </nav>
-    );
+function DropItem({ href, children }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <Link href={href}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        fontFamily: "'Cinzel', serif",
+        fontSize: '26px',
+        letterSpacing: '3px',
+        textTransform: 'uppercase',
+        textDecoration: 'none',
+        padding: '18px 36px',
+        color: hovered ? '#FFD700' : 'rgba(212,175,55,0.7)',
+        background: hovered ? 'rgba(212,175,55,0.08)' : 'transparent',
+        transition: 'all 0.2s ease',
+        display: 'block',
+        whiteSpace: 'nowrap',
+      }}>
+      {children}
+    </Link>
+  );
 }

@@ -1,119 +1,151 @@
-import PlaceholderImage from './PlaceholderImage';
+import Reveal from './reveal';
+
+const GALLERY_ITEMS = [
+  {
+    title: 'DJ Night',
+    desc: 'Where the night came alive with beats and light',
+    img: '/DJNight/IMG_2497.png',
+    span: 2, height: '700px',
+  },
+  {
+    title: 'Final Year Dance',
+    desc: 'A farewell written in rhythm and grace',
+    img: '/Final_year_dance/IMG_2095.png',
+    span: 1, height: '700px',
+  },
+  {
+    title: 'Pratistaan',
+    desc: 'The stage where legends planted their roots',
+    img: '/Pratistaan/IMG_2555.JPG',
+    span: 1, height: '560px',
+  },
+  {
+    title: 'Timeless Tunes',
+    desc: 'Melodies that echoed through the ages',
+    img: '/TimelessTunes/IMG_1646.png',
+    span: 2, height: '560px',
+  },
+  {
+    title: 'Vogue',
+    desc: 'Fashion forged from myth and fire',
+    img: '/VOGUE/IMG_1930.png',
+    span: 1, height: '560px',
+  },
+];
 
 export default function GallerySection() {
-    return (
-        <>
-            <img
-                src="/These151.png"
-                className="w-[2629px] h-[1666px] absolute -left-[38px] top-[7400px] max-w-none"
-                alt="These15 1"
-            />
+  return (
+    <section style={{ padding: '160px 160px', position: 'relative', zIndex: 1 }}>
+      <Reveal>
+        <h2 style={{
+          textAlign: 'center',
+          fontFamily: "'Cinzel', serif",
+          fontSize: '70px',
+          color: '#D4AF37',
+          letterSpacing: '10px',
+          marginBottom: '30px',
+        }}>
+          A GLIMPSE OF MYTHOPIA
+        </h2>
+        <p style={{
+          textAlign: 'center',
+          fontFamily: "'Cormorant Garamond', serif",
+          color: 'rgba(212,175,55,0.5)',
+          fontSize: '36px',
+          fontStyle: 'italic',
+          marginBottom: '100px',
+          letterSpacing: '3px',
+        }}>
+          Nights of legend, stages of glory — moments that will never fade
+        </p>
+      </Reveal>
 
-            <p className="text-[#FFF] font-pinyon text-[75px] w-[639px] h-[98px] absolute left-[961px] top-[7302px]">
-                A glimpse of Mythopia
-            </p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '32px' }}>
+        {GALLERY_ITEMS.map((item, i) => (
+          <Reveal key={i} delay={i * 0.08}>
+            <div
+              style={{
+                gridColumn: `span ${item.span}`,
+                height: item.height,
+                position: 'relative',
+                overflow: 'hidden',
+                cursor: 'pointer',
+                border: '2px solid rgba(212,175,55,0.15)',
+                transition: 'all 0.4s ease',
+                display: 'flex',
+                alignItems: 'flex-end',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'rgba(212,175,55,0.5)';
+                e.currentTarget.style.boxShadow = '0 0 80px rgba(212,175,55,0.2)';
+                e.currentTarget.querySelector('.img-zoom').style.transform = 'scale(1.06)';
+                e.currentTarget.querySelector('.img-overlay').style.opacity = '1';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'rgba(212,175,55,0.15)';
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.querySelector('.img-zoom').style.transform = 'scale(1)';
+                e.currentTarget.querySelector('.img-overlay').style.opacity = '0.5';
+              }}
+            >
+              {/* Actual image */}
+              <img
+                className="img-zoom"
+                src={item.img}
+                alt={item.title}
+                style={{
+                  position: 'absolute', inset: 0,
+                  width: '100%', height: '100%',
+                  objectFit: 'cover',
+                  transition: 'transform 0.6s ease',
+                }}
+              />
 
-            {/* Gallery Container start */}
-            <div className="w-[2005px] h-[1166px] absolute left-[258px] top-[7610px]">
-                <img
-                    src="/aGrid1.png"
-                    className=" w-[548px] h-[731px] absolute left-[945px] top-[435px] max-w-none drop-shadow-xl"
-                    alt="aGrid1"
-                />
-                <img
-                    src="/aGrid2.png"
-                    className="w-[486px] h-[486px] absolute left-[1519px] top-0 max-w-none drop-shadow-xl"
-                    alt="aGrid2"
-                />
-                <img
-                    src="/aGrid3.png"
-                    className="shadow-[0_4px_136.3px_0_#000] w-[431px] h-[575px] absolute left-[493px] top-[588px] max-w-none"
-                    alt="aGrid3"
-                />
-                <img
-                    src="/aGrid4.jpeg"
-                    className="shadow-[0_4px_93.9px_0_#000] w-[456px] h-[608px] absolute left-[9px] top-[547px] max-w-none"
-                    alt="aGrid4"
-                />
-                <img
-                    src="/aGrid5.png"
-                    className="shadow-[0_0_101.2px_0_#000] w-[489px] h-[652px] absolute left-[1514px] top-[511px] max-w-none"
-                    alt="aGrid5"
-                />
-                <img
-                    src="/aGrid6.jpeg"
-                    className="shadow-[0_4px_153.3px_0_#000] w-[417px] h-[556px] absolute left-[497px] top-1 max-w-none"
-                    alt="aGrid6"
-                />
-                <img
-                    src="/aGrid7.JPG"
-                    className="shadow-[0_4px_115.4px_0_#000] w-[547px] absolute left-[945px] top-1 max-w-none"
-                    alt="aGrid7"
-                />
-                <img
-                    src="/aGrid8.jpeg"
-                    className="shadow-[0_4px_82.2px_0_#000] w-[462px] h-[511px] absolute left-0 top-1 max-w-none"
-                    alt="aGrid8"
-                />
+              {/* Dark gradient overlay so text is always readable */}
+              <div
+                className="img-overlay"
+                style={{
+                  position: 'absolute', inset: 0,
+                  background: 'linear-gradient(to top, rgba(4,2,14,0.92) 0%, rgba(4,2,14,0.4) 50%, transparent 100%)',
+                  opacity: 0.5,
+                  transition: 'opacity 0.4s ease',
+                }}
+              />
+
+              {/* Gold top-edge shimmer on hover */}
+              <div style={{
+                position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
+                background: 'linear-gradient(to right, transparent, #D4AF37, transparent)',
+                opacity: 0,
+                transition: 'opacity 0.4s',
+              }} />
+
+              {/* Text */}
+              <div style={{ padding: '50px', position: 'relative', zIndex: 1 }}>
+                <h3 style={{
+                  fontFamily: "'Cinzel', serif",
+                  fontSize: '40px',
+                  color: '#D4AF37',
+                  letterSpacing: '3px',
+                  marginBottom: '12px',
+                  textShadow: '0 2px 12px rgba(0,0,0,0.8)',
+                }}>
+                  {item.title}
+                </h3>
+                <p style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: '30px',
+                  color: 'rgba(255,240,200,0.75)',
+                  fontStyle: 'italic',
+                  textShadow: '0 2px 8px rgba(0,0,0,0.8)',
+                }}>
+                  {item.desc}
+                </p>
+              </div>
             </div>
-
-            <img
-                src="/These151.png"
-                className="w-[2629px] h-[1666px] absolute -left-7 top-[9040px] max-w-none"
-                alt="These15 2"
-            />
-
-            {/* Gallery Container 2 start */}
-            <div className="w-[2005px] h-[1166px] absolute left-[258px] top-[9250px]">
-                {/* Top Row */}
-                <img
-                    src="/bGrid1.png"
-                    className="shadow-[0_4px_136.3px_0_#000] w-[600px] absolute right-357 top-[30px] max-w-none object-cover"
-                    alt="Couch Talk"
-                />
-                <img
-                    src="/bGrid2.jpeg"
-                    className="shadow-[0_4px_136.3px_0_#000] w-[380px] absolute left-[600px] top-7 max-w-none object-cover"
-                    alt="Singer"
-                />
-                <img
-                    src="/bGrid3.png"
-                    className="shadow-[0_4px_136.3px_0_#000] w-[670px] absolute left-[1000px] top-[30px] max-w-none object-cover"
-                    alt="DJ"
-                />
-                <img
-                    src="/bGrid4.png"
-                    className="shadow-[0_4px_136.3px_0_#000] w-[480px] absolute left-[1690px] top-8 max-w-none object-cover"
-                    alt="Red Stage"
-                />
-
-                {/* Bottom Row */}
-                <img
-                    src="/bGrid5.png"
-                    className="shadow-[0_4px_136.3px_0_#000] w-[500px] absolute right-382 top-[500px] max-w-none object-cover"
-                    alt="RedBull"
-                />
-                <img
-                    src="/bGrid6.png"
-                    className="shadow-[0_4px_136.3px_0_#000] w-[450px] absolute left-[500px] top-[560px] max-w-none object-cover"
-                    alt="Group"
-                />
-                <img
-                    src="/bGrid7.png"
-                    className="shadow-[0_4px_136.3px_0_#000] w-[350px] absolute left-[965px] top-[690px] max-w-none object-cover"
-                    alt="Dark Stage"
-                />
-                <img
-                    src="/bGrid8.png"
-                    className="shadow-[0_4px_136.3px_0_#000] w-[833px] absolute left-[1330px] top-[690px] max-w-none object-cover"
-                    alt="Realme"
-                />
-                <img
-                    src="/bGrid9.png"
-                    className="shadow-[0_4px_136.3px_0_#000] w-[650px] absolute left-[1000px] top-[430px] max-w-none object-cover"
-                    alt="Realme"
-                />
-            </div>
-        </>
-    );
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
 }
