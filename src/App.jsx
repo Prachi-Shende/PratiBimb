@@ -184,7 +184,7 @@ import AboutUs from './pages/AboutUs';
 import ObsidianPage from './pages/Obisidian';
 import EDCPage from './pages/Edc';
 import Prati_25 from './pages/Prati_25';
-
+import Theme from './pages/Theme';
 // const Prati25Page = () => (
 //   <div className="bg-black text-white min-h-screen pt-32 flex items-center justify-center">
 //     <div className="text-center">
@@ -250,6 +250,7 @@ const AppInner = () => {
               <Route path="/clubs/edc"      element={<EDCPage />} />
               <Route path="/clubs/obsidian" element={<ObsidianPage />} />
               <Route path="/past/prati25"   element={<Prati_25 />} />
+              <Route path="/theme"   element={<Theme />} />
               <Route path="*"               element={<NotFoundPage />} />
             </Routes>
           </main>
