@@ -1,5 +1,4 @@
 import Navbar from './Navbar';
-import PlaceholderImage from './PlaceholderImage';
 
 export default function HeroSection() {
     return (

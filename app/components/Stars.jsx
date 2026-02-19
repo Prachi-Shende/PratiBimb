@@ -47,25 +47,41 @@ const Stars = () => {
             stars.push({
                 x,
                 y,
-                size: Math.random() * 2 + 1,
-                opacity: Math.random() * 0.4 + 0.1
+                size: Math.random() * 4 + 2,
+                baseOpacity: Math.random() * 0.4 + 0.1,
+                pulsateSpeed: Math.random() * 0.002 + 0.0005,
+                phase: Math.random() * Math.PI * 2
             });
         }
 
-        const draw = () => {
+        let animationFrameId;
+
+        const animate = () => {
             ctx.clearRect(0, 0, width, height);
+            const now = Date.now();
 
             stars.forEach(star => {
+                // Calculate opacity based on sine wave
+                const opacity = star.baseOpacity + Math.sin(now * star.pulsateSpeed + star.phase) * 0.3; // varying by +/- 0.15
+                // Clamp opacity between 0.1 and 1
+                const finalOpacity = Math.max(0.1, Math.min(1, opacity));
+
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(212, 175, 55, ${star.opacity})`; // Golden color
+                ctx.fillStyle = `rgba(212, 175, 55, ${finalOpacity})`; // Golden color
                 ctx.shadowBlur = 8;
                 ctx.shadowColor = '#D4AF37';
                 ctx.fill();
             });
+
+            animationFrameId = requestAnimationFrame(animate);
         };
 
-        draw();
+        animate();
+
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+        };
 
     }, []);
 

@@ -1,11 +1,11 @@
-import PlaceholderImage from './PlaceholderImage';
+
 
 export default function MythopiaSection() {
     return (
         <div className="absolute top-[200px] left-0 w-full h-[500px] flex items-center justify-center overflow-hidden">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
-                <PlaceholderImage
+                <img
                     src="/MythopiaBG.jpg"
                     className="w-full h-full object-cover opacity-80"
                     alt="Mythopia Background"

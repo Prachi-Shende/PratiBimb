@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { events } from '../data/events';
-import PlaceholderImage from './PlaceholderImage';
+
 
 export default function TimelineSection() {
     return (

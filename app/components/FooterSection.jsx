@@ -1,5 +1,3 @@
-import PlaceholderImage from './PlaceholderImage';
-
 export default function FooterSection() {
     return (
         <>

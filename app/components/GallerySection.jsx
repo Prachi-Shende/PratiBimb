@@ -1,4 +1,4 @@
-import PlaceholderImage from './PlaceholderImage';
+
 
 export default function GallerySection() {
     return (
