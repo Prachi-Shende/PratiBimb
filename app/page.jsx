@@ -32,9 +32,9 @@ export default function Desktop() {
                 className="bg-[radial-gradient(50%_50%_at_50%_50%,#1A1A1A_0%,#000_99.99%)] relative overflow-hidden origin-top-left"
                 style={{
                     width: '2560px',
-                    height: '12580px', // Identifying intended height from Figma export
+                    height: '10900px', // Identifying intended height from Figma export
                     transform: `scale(${scale})`,
-                    marginBottom: `-${(1 - scale) * 12580}px` // Compensate for vertical whitespace if needed
+                    marginBottom: `-${(1 - scale) * 10900}px` // Compensate for vertical whitespace if needed
                 }}
             >
                 <Stars />

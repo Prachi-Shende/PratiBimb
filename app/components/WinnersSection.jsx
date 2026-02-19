@@ -2,15 +2,11 @@
 
 export default function WinnersSection() {
     return (
-        <div className="absolute top-[10600px] w-full h-[1500px]">
+        <div className="absolute top-[8960px] w-full h-[1500px]">
             {/* Background Wall */}
             <div className="absolute inset-0 z-0 overflow-hidden">
-                <img src="/Wall.jpg" className="absolute w-[2000px] right-[300px] top-[270px]" alt="Wall" />
+                <img src="/Wall.jpg" className="absolute w-[2800px]  top-[270px]" alt="Wall" />
             </div>
-
-            {/* Pillars */}
-            <img src="/Pillar.png" className="absolute right-[1700px] top-[150px] w-[1200px] h-[1200px] z-10" alt="Left Pillar" />
-            <img src="/Pillar.png" className="absolute left-[1700px] top-[150px] w-[1200px] h-[1200px] z-10" alt="Right Pillar" />
 
             {/* Title */}
             <div className="absolute top-[100px] w-full text-center z-20">

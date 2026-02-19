@@ -1,7 +1,7 @@
 export default function FooterSection() {
     return (
         <>
-            <div className="w-[2719px] h-72 absolute -left-[34px] top-[12300px]">
+            <div className="w-[2719px] h-72 absolute -left-[34px] top-[10660px]">
                 <div className="bg-[rgba(98,40,6,0.33)] w-[2719px] h-72 absolute left-0 top-0"></div>
                 <p className="text-[#D4AF37] font-cinzel text-[80px] w-[933px] h-[170px] absolute left-[236px] top-[71px]">
                     PratiBimb 25’
