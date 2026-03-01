@@ -35,8 +35,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-8 relative z-10">
 
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <div className="mb-6">
@@ -190,6 +189,58 @@ const Footer = () => {
                   <p className="text-white font-bold">15 Competitions</p>
                 </div>
               )}
+            </div>
+          </div>
+
+          {/* Website Credits */}
+          <div>
+            <h3 className="text-white font-black text-xs tracking-[0.3em] uppercase mb-6 flex items-center gap-2">
+              <span className={`w-4 h-[2px] ${accentBg} inline-block`} />
+              Website Credits
+            </h3>
+
+            <div className="space-y-4 text-sm">
+
+              {/* Execution Head */}
+              <div>
+                <p className="text-gray-500 text-xs tracking-widest uppercase mb-1">
+                  Execution Head '26
+                </p>
+                <p className="text-white font-medium">
+                  Prachi Shende
+                </p>
+              </div>
+
+              {/* Digital Head */}
+              <div>
+                <p className="text-gray-500 text-xs tracking-widest uppercase mb-1">
+                  Digital Head '26
+                </p>
+                <p className="text-white font-medium">
+                  Sarakshi Mamodia
+                </p>
+              </div>
+
+              {/* TY Team */}
+              <div>
+                <p className="text-gray-500 text-xs tracking-widest uppercase mb-1">
+                  TY Team
+                </p>
+                <p className="text-gray-400 leading-relaxed">
+                  Mahima Sonawane • Esha Bidkar • Prachi Chavhan
+                </p>
+              </div>
+
+              {/* SY Team */}
+              <div>
+                <p className="text-gray-500 text-xs tracking-widest uppercase mb-1">
+                  SY Team
+                </p>
+                <p className="text-gray-400 leading-relaxed">
+                  Nathan Dsouza • Aashay • Harsh Sankhe
+                </p>
+              </div>
+
             </div>
           </div>
         </div>
